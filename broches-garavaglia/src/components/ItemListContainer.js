@@ -1,29 +1,45 @@
+import { useEffect, useState } from "react";
+import { productsAPI } from "./Promise";
 import Item from "./Item";
 
-
-const products = [
-    {id:"1", name:"Broches", price: "13" },
-    {id:"2", name:"Trapo", price: "4345" },
-    {id:"3", name:"Sopapa", price: "1235" },
-    {id:"4", name:"Rastrillo", price: "6544" },
-    {id:"5", name:"Secador", price: "6457" },
-    {id:"6", name:"Pala", price: "235" }
-
-];
-
 const ItemListContainer = () => {
+    
+    const [selectedItem, setSelectedItem] = useState(null)
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        getProducts()
+    }, [])
+
+    const getProducts = async () =>{
+        try {
+            const result = await productsAPI
+            setProducts(result)
+        } catch (error){
+            console.log({ error })
+        } finally {
+            setLoading(false)
+            console.log("Finalizacion del consumo de la API")
+        }
+    }
+    
+    if(loading){
+        return <h1>Cargando.....</h1>
+    }
+
     return (
         <div>
-            
-            {products.map(({id, name, price }) => (
-                <Item
-                    key={id}
-                    id={id}
-                    name={name}
-                    price={price}
-                    
-                
-                />
+            <h1>Lista de productos</h1>
+            <h3>Producto seleccionado</h3>
+            <p>ID: {selectedItem && selectedItem.id}</p>
+            <p>Producto: {selectedItem && selectedItem.name}</p>
+            <p>Precio: {selectedItem && selectedItem.price}</p>
+            <p>Cantidad Seleccionada: {selectedItem && selectedItem.stock}</p>
+            <hr/>
+
+            {products.map((product) => (
+                <Item key={product.id} {...product} setSelectedItem={setSelectedItem} />
 
             ))}
         </div>

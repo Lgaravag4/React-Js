@@ -1,8 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-const ItemCounter = ({stock}) => {
+const ItemCounter = ({stock, setStockSelected}) => {
 
     const [counter, setCounter] = useState(0);
+    
+    useEffect(() => {
+        setStockSelected(counter)
+    },[counter])
     
     const minusCounter = () => {
         if (counter <=0) return;
@@ -20,8 +24,6 @@ const ItemCounter = ({stock}) => {
                 <span>{counter}</span>
                 <button onClick={plusCounter}>+</button>
             </div>
-            <button >Agregar</button>
-
         </>
     );
 };
