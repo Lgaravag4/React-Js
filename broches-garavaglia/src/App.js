@@ -4,11 +4,13 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 
 function App() {
+  const saludo = 'Bienvenidos!!!'
+
   return (
     <div className="productos">
       <NavBar/>  
       <hr/>
-      <ItemListContainer />
+      <ItemListContainer greeting={saludo}/>
     </div>
   );
 }

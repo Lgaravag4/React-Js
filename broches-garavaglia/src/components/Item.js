@@ -1,20 +1,31 @@
 import { useState } from "react";
-import ItemCounter from "./ItemCounter";
+import { Button, Card } from "react-bootstrap";
+//import ItemCounter from "./ItemCounter";
 
-const Item = ({id, name, price, stock, setSelectedItem}) => {
-  const[stockSelected, setStockSelected] = useState(0)
+const Item = ({prod}) => {
 
-  const selectItem = () => setSelectedItem({id, name, price, stock: stockSelected })
-  
+  const{id, imagen, name, price} = prod
+  //const[stockSelected, setStockSelected] = useState(0)
+
+  //const selectItem = () => setSelectedItem({id, name, price, imagen })
+  // stock: stockSelected, 
   return (
   <>
-    <div>
+    {/* <div>
         <h2>Nombre: {name}</h2>
         <h2>Precio: {price}</h2>
-        <ItemCounter stock={stock} setStockSelected={setStockSelected}/>
         <button onClick={selectItem}>Seleccionar Producto</button>
-    </div>
-    <hr/>
+      <ItemCounter stock={stock} setStockSelected={setStockSelected}/>
+        </div> */
+      <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={imagen} />
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>$ {price}</Card.Text>
+          <Button variant="primary">Detalle</Button>
+        </Card.Body>
+      </Card>
+    }
   </>
   )
 };

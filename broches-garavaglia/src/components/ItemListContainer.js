@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { productsAPI } from "./Promise";
+import BsSpinner from "./BsSpinner";
+import { productsAPI } from "./helpers/Promise";
 import Item from "./Item";
+import ItemList from "./ItemList"
 
-const ItemListContainer = () => {
+
+const ItemListContainer = ({greeting}) => {
     
     const [selectedItem, setSelectedItem] = useState(null)
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
-
+    
     useEffect(() => {
         getProducts()
     }, [])
@@ -25,11 +28,14 @@ const ItemListContainer = () => {
     }
     
     if(loading){
-        return <h1>Cargando.....</h1>
+        return <BsSpinner/>
     }
 
     return (
         <div>
+            <div style={{ textAling: 'center'}}>
+                <h1>{greeting}</h1>
+            </div>
             <h1>Lista de productos</h1>
             <h3>Producto seleccionado</h3>
             <p>ID: {selectedItem && selectedItem.id}</p>
@@ -38,10 +44,7 @@ const ItemListContainer = () => {
             <p>Cantidad Seleccionada: {selectedItem && selectedItem.stock}</p>
             <hr/>
 
-            {products.map((product) => (
-                <Item key={product.id} {...product} setSelectedItem={setSelectedItem} />
-
-            ))}
+            <ItemList productos = {products} />
         </div>
 
     );
