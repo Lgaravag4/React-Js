@@ -1,4 +1,3 @@
-import { products } from "../assets/products/products"
 import Item from "./Item"
 
 const ItemList = ({productos}) => {
