@@ -3,6 +3,9 @@ import useProducts from "./hooks/useProducts"
 import { Link, useParams } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 import ItemCounter from "./ItemCounter";
+import ItemDetail from "./ItemDetail";
+import BsSpinner from "./BsSpinner";
+
 
 
 const ItemDetailContainer = () => {
@@ -17,26 +20,17 @@ const ItemDetailContainer = () => {
         if (products.length > 0) {
             const selectedProduct = products.find((product) => product.id === id)
             setSelectedItem(selectedProduct)
+            setLoading(false)
         }
     }, [products])
         
-    if(loading){
-        return <h1>Cargando.....</h1>
-    }
-    
+       
     return (
         <>
-        {
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={selectedItem && selectedItem.imagen} />
-            <Card.Body>
-              <Card.Title>{selectedItem && selectedItem.name}</Card.Title>
-              <Card.Text>$ {selectedItem && selectedItem.price}</Card.Text>
-                   <ItemCounter stock={selectedItem && selectedItem.stock} setStockSelected={setStockSelected}/>
-                    <Button> Seleccionar Producto </Button>
-            </Card.Body>
-          </Card>
-        }
+        { loading ? 
+        <BsSpinner/> :
+         <ItemDetail selectedItem={selectedItem} setStockSelected={setStockSelected}/>}
+        
       </>
     );
 };

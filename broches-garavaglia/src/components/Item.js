@@ -1,9 +1,9 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Item = ({prod}) => {
+const Item = ({product}) => {
 
-  const{id, imagen, name, price, category} = prod
+  const{id, imagen, name, price, category} = product
 
   return (
   <>
@@ -11,10 +11,10 @@ const Item = ({prod}) => {
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={imagen} />
         <Card.Body>
-          <Card.Title>{prod.name}</Card.Title>
-          <Card.Text>$ {prod.price}</Card.Text>
-          <Card.Text>Categoria: {prod.category}</Card.Text>
-          <Link to={`/detalle/${prod.id}`}><Button variant="primary">Detalle</Button></Link>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>$ {price}</Card.Text>
+          <Card.Text>Categoria: {category}</Card.Text>
+          <Link to={`/detalle/${id}`}><Button variant="primary">Detalle</Button></Link>
         </Card.Body>
       </Card>
     }

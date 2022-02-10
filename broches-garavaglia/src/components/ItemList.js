@@ -6,18 +6,15 @@ const ItemList = () => {
     
     const {id}= useParams()
     const {products} = useProducts()
-    const filterProducts = products.filter(({category}) => category === id)
+    const filterProducts = id ? products.filter(({category}) => category === id) : products
 
     return (
         <div style={{display: 'flex'}}>
 
-            {
-                products?.map((product) => <Item key={product.id} {...product}/>)
+            {   
+                filterProducts.map((product) => <Item key={product.id} product={product}/>)
             }
 
-            {   
-                filterProducts.map((product) => <Item key={product.id} {...product}/>)
-            }
         </div>
     )
 }
