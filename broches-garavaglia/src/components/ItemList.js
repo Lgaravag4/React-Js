@@ -11,12 +11,13 @@ const ItemList = () => {
     return (
         <div style={{display: 'flex'}}>
 
-            {!id && products.map((product) =>{
-                return <Item key={product.id} {...product}/>
-            })}
-            {id && filterProducts.map((product) =>{
-                return <Item key={product.id} {...product}/>
-            })}
+            {
+                products?.map((product) => <Item key={product.id} {...product}/>)
+            }
+
+            {   
+                filterProducts.map((product) => <Item key={product.id} {...product}/>)
+            }
         </div>
     )
 }

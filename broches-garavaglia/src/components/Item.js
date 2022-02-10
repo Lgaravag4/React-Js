@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 
 const Item = ({prod}) => {
 
-  const{id, imagen, name, price} = prod
+  const{id, imagen, name, price, category} = prod
 
   return (
   <>
@@ -12,9 +11,10 @@ const Item = ({prod}) => {
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={imagen} />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>$ {price}</Card.Text>
-          <Button variant="primary">Detalle</Button>
+          <Card.Title>{prod.name}</Card.Title>
+          <Card.Text>$ {prod.price}</Card.Text>
+          <Card.Text>Categoria: {prod.category}</Card.Text>
+          <Link to={`/detalle/${prod.id}`}><Button variant="primary">Detalle</Button></Link>
         </Card.Body>
       </Card>
     }

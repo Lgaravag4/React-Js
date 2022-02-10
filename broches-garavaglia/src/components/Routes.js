@@ -1,14 +1,14 @@
-import { Navbar } from "./NavBar";
+import NavBar from "./NavBar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {ItemDetailContainer} from "./ItemDetailContainer";
-import {ItemListContainer} from "./ItemListContainer";
-import {NotFound} from "./NotFound"
+import ItemDetailContainer from "./ItemDetailContainer";
+import ItemListContainer from "./ItemListContainer";
+import NotFound from "./NotFound"
 
 
-const Routes = () => {
+const Routes1 = () => {
   return (
     <BrowserRouter>
-    <Navbar/>
+        <NavBar/>
         <Routes>
             <Route path="/" element={<ItemListContainer/>}/>
             <Route path="/category/:id" element={<ItemListContainer/>}/>
@@ -19,4 +19,4 @@ const Routes = () => {
   )
 };
 
-export default Routes;
+export default Routes1;

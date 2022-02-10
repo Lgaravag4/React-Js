@@ -1,17 +1,17 @@
-import { useState } from "react";
-import BsSpinner from "./BsSpinner";
+//import { useState } from "react";
+//import BsSpinner from "./BsSpinner";
 import ItemList from "./ItemList"
 
 
 
 const ItemListContainer = ({greeting}) => {
     
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
 
     
-    if(loading){
-        return <BsSpinner/>
-    }
+    // if(loading){
+    //     return <BsSpinner/>
+    // }
 
     return (
         <div>
