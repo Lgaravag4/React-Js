@@ -14,7 +14,9 @@ const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
     const {products} = useProducts ()
     const {id} = useParams()
-    const[stockSelected, setStockSelected] = useState(0)
+    const [stockSelected, setStockSelected] = useState(0)
+
+
 
     useEffect(() => {
         if (products.length > 0) {
@@ -24,6 +26,7 @@ const ItemDetailContainer = () => {
         }
     }, [products])
         
+   
        
     return (
         <>

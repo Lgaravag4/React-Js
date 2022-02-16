@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Routes1 from './components/Routes';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   const saludo = 'Bienvenidos!!!'
@@ -8,8 +9,9 @@ function App() {
   return (
     <div className="productos">
       
-      <Routes1/>  
-    
+      <CartProvider>
+        <Routes1/>  
+      </CartProvider>
     </div>
   );
 }
