@@ -5,14 +5,14 @@ export const CartContext = createContext()
 export const CartProvider = ({children}) => {
     const [items, setItems] = useState ([])
 
-    const addItem = (currentItem, cant) => {
+    const addItem = (currentItem, count) => {
         const indice = isInCart(currentItem)
 
         if (indice === -1){
-            setItems([...items, {currentItem, cant}])
+            setItems([...items, currentItem])
         } else{
             let updateCard = [...items]
-            updateCard[indice].cant = cant
+            updateCard[indice].count = count
             setItems(updateCard)
         }
     }

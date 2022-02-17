@@ -9,28 +9,25 @@ const ItemDetail = ({selectedItem, setStockSelected }) => {
 
     const [show, setShow] = useState(true)
     const { addItem } = useContext(CartContext)
-    const [quantity, setQuantity] = useState(0)
-    const [userName, setUserName] = useState("")
+    
 
     const onAdd = (count) => {
         setShow(false)
         alert(`Producto: ${selectedItem.name} cantidad: ${count}`)
+        addItem({
+            ...selectedItem,
+            cantidad: count
+        })
     }
     
-    const handleAddToCart = () => {
-      addItem({
-          item: selectedItem,
-          quantity
-      })
-    }
-
+    
   return (
     <div> <Card style={{ width: '18rem' }}>
     <Card.Img variant="top" src={selectedItem && selectedItem.imagen} />
     <Card.Body>
       <Card.Title>{selectedItem && selectedItem.name}</Card.Title>
       <Card.Text>$ {selectedItem && selectedItem.price}</Card.Text>
-     {show ? <ItemCounter stock={selectedItem && selectedItem.stock} setStockSelected={setQuantity} onAdd={onAdd} handleAddToCart={handleAddToCart}/> : <div><Link to="/cart"><Button>Ir al Carrito</Button></Link><Link to="/"><Button>Seguir Comprando</Button></Link></div>}
+     {show ? <ItemCounter stock={selectedItem && selectedItem.stock} setStockSelected={setStockSelected} onAdd={onAdd}/> : <div><Link to="/cart"><Button>Ir al Carrito</Button></Link><Link to="/"><Button>Seguir Comprando</Button></Link></div>}
       
     </Card.Body>
   </Card>
