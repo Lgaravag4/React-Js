@@ -21,8 +21,19 @@ export const CartProvider = ({children}) => {
         const item = items.find( item => item.id === itemNuevo.id)
         return items.indexOf(item)
     }
+
+    const removeCartItem = (itemId) => {
+        setItems (items.filter((item) => item.id !== itemId))
+    }
+
+    const clearCart = () => {
+        setItems([])
+    }
+
+    
+
     return (
-        <CartContext.Provider value={{items,addItem}}>
+        <CartContext.Provider value={{items,addItem, removeCartItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )
