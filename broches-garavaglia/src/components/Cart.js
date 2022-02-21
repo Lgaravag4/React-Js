@@ -31,7 +31,9 @@ const Cart = () => {
           <img src={item.imagen} className="img" ></img> - Producto: {item.name} - Cantidad: {item.cantidad} - Precio: $ {item.price} - Total: {item.cantidad * item.price}    
           <button onClick={(event) => handleClickOnRemove(item.id)}> Eliminar Producto</button>
         </li>))}
-        <button onClick={(event) => handleClickClear()}>Limpiar Carrito</button>
+        Compra Total: {items.reduce((acum, item) => acum + (item.cantidad * item.price),0)}
+        
+        <button onClick={(event) => handleClickClear()}> Limpiar Carrito</button>
       </ul>
     </div>
     )
