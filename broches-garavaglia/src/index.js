@@ -5,6 +5,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserAuthProvider } from './context/UserAuthContext';
 
+import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDSWpShPYSk5RlDASpV7qPSmj75XLfsQds",
+  authDomain: "broches-garavaglia.firebaseapp.com",
+  projectId: "broches-garavaglia",
+  storageBucket: "broches-garavaglia.appspot.com",
+  messagingSenderId: "389112116097",
+  appId: "1:389112116097:web:ff34a98b510dbd109c6e80"
+};
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app)
+
 ReactDOM.render(
   <React.StrictMode>
     <UserAuthProvider>
