@@ -20,7 +20,6 @@ const ItemDetail = ({selectedItem, setStockSelected }) => {
         })
     }
     
-    
   return (
     <div> <Card style={{ width: '18rem' }}>
     <Card.Img variant="top" src={selectedItem && selectedItem.imagen} />

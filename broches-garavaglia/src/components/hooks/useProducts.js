@@ -11,12 +11,12 @@ const useProducts = () => {
         getProducts()
     },[])
 
-
+    
     const getProducts = () => {
         const result = collection(db, 'items')
         getDocs (result)
         .then((prod) => {
-            const items = (prod.docs.map((prod) => ({id:prod.id.at,...prod.data()})))
+            const items = (prod.docs.map((prod) => ({id:prod.id,...prod.data()})))
             setProducts(items)
         })
         .finally(() => console.log("Finalizacion consumo API productsAPI"))

@@ -16,8 +16,7 @@ const ItemDetailContainer = () => {
     const {id} = useParams()
     const [stockSelected, setStockSelected] = useState(0)
 
-
-
+    
     useEffect(() => {
         if (products.length > 0) {
             const selectedProduct = products.find((product) => product.id === id)
