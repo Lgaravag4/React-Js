@@ -1,0 +1,64 @@
+import { useContext, useState } from "react";
+import { CartContext } from "../context/CartContext";
+import { addDoc, collection, doc, getFirestore, updateDoc } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import { Button } from "react-bootstrap";
+
+const Checkout = () => {
+    const {items, clearCart}=useContext(CartContext)
+    const {id} = useParams()
+
+    const[buyer, setBuyer] = useState({
+        name:'',
+        phone:'',
+        email:''
+
+    })
+
+    const [orderId, setOrderId] = useState(null)
+
+    const sendOrder = () => {
+        const order={
+            buyer,
+            item: items,
+            // me falta el total
+        }
+
+        const db = getFirestore()
+        
+        const orderCollection = collection(db, "orders")
+        
+        addDoc(orderCollection, order).then(({id}) => setOrderId(id))
+        
+        clearCart()
+    }
+
+    const updateOrder = () =>{
+        const db = getFirestore()
+        items.forEach(item => {
+            const docRef = doc(db, "items", item.id)
+            updateDoc(docRef, {stock:item.stock-item.quantity})    
+        })
+
+    }
+
+    return(
+        <div>
+            <form>
+                <label>Nombre</label>
+                <input placeholder="name" value={buyer.name} onChange={(e) => setBuyer.name(e.target.value)}/>
+
+                <label>Telefono</label>
+                <input placeholder="phone" value={setBuyer(buyer.phone)}/>
+
+                <label>Email</label>
+                <input placeholder="email" value={setBuyer(buyer.email)}/>
+
+            </form>
+            <Button onClick={sendOrder, updateOrder }></Button>
+        </div>
+    )
+
+}
+
+export default Checkout

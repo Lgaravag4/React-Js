@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { products } from '../assets/products/products'
 import { CartContext } from '../context/CartContext'
 import '../App.css';
+import Checkout from './Checkout'
 
 const Cart = () => {
 
@@ -35,6 +36,7 @@ const Cart = () => {
         
         <button onClick={(event) => handleClickClear()}> Limpiar Carrito</button>
       </ul>
+      <Checkout/>
     </div>
     )
   }
