@@ -15,13 +15,19 @@ const Checkout = () => {
 
     })
 
+    const handleChange = (e) =>  {
+        const {name, value } = e.target
+        setBuyer({...buyer, [name]: value})
+    }
+
     const [orderId, setOrderId] = useState(null)
 
     const sendOrder = () => {
         const order={
             buyer,
             item: items,
-            // me falta el total
+            total: items.reduce((acum, item) => acum + (item.cantidad * item.price),0)
+                       
         }
 
         const db = getFirestore()
@@ -37,28 +43,30 @@ const Checkout = () => {
         const db = getFirestore()
         items.forEach(item => {
             const docRef = doc(db, "items", item.id)
-            updateDoc(docRef, {stock:item.stock-item.quantity})    
+            
+            updateDoc(docRef, {stock:item.stock-item.cantidad})    
         })
 
     }
 
     return(
         <div>
+            <hr/>
             <form>
                 <label>Nombre</label>
-                <input placeholder="name" value={buyer.name} onChange={(e) => setBuyer.name(e.target.value)}/>
+                <input placeholder="name" name="name" onChange={handleChange}/>
 
                 <label>Telefono</label>
-                <input placeholder="phone" value={setBuyer(buyer.phone)}/>
+                <input placeholder="phone" name="phone" onChange={handleChange} />
 
                 <label>Email</label>
-                <input placeholder="email" value={setBuyer(buyer.email)}/>
+                <input placeholder="email" name="email" onChange={handleChange}/>
 
             </form>
-            <Button onClick={sendOrder, updateOrder }></Button>
+            <br/>
+            <Button onClick={() =>{sendOrder() ; updateOrder()}}>Enviar</Button>
         </div>
     )
-
 }
 
 export default Checkout

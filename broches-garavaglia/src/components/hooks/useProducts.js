@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { productsAPI } from "../helpers/Promise";
 import { collection, getDocs} from 'firebase/firestore'
 import {db} from '../../index'
 
@@ -21,16 +20,6 @@ const useProducts = () => {
         })
         .finally(() => console.log("Finalizacion consumo API productsAPI"))
     }
-    // const getProducts = async () => {
-    //     try {
-    //         const result = await productsAPI
-    //         setProducts(result)
-    //     } catch (error){
-    //         console.log({error})
-    //     } finally {
-    //         console.log("Finalizacion consumo API productsAPI")
-    //     }
-    // }
 
     return {
         products,

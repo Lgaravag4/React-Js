@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import useProducts from "./hooks/useProducts"
-import { Link, useParams } from "react-router-dom";
-import { Button, Card } from "react-bootstrap";
-import ItemCounter from "./ItemCounter";
+import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import BsSpinner from "./BsSpinner";
 

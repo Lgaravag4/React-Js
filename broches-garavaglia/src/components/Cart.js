@@ -1,22 +1,13 @@
 import React, { useContext} from 'react'
 import { Link } from 'react-router-dom'
-import { products } from '../assets/products/products'
 import { CartContext } from '../context/CartContext'
 import '../App.css';
 import Checkout from './Checkout'
 
 const Cart = () => {
 
-  const { items, removeCartItem, clearCart, addItem} = useContext(CartContext)
-
-  const handleClickOnRemove = (productId) => {
-    removeCartItem(productId)
-  }
-
-  const handleClickClear = () => {
-    clearCart()
-  }
-
+  const { items, removeCartItem, clearCart} = useContext(CartContext)
+    
   if(items.length === 0){
     return (<>
       <h1>Carrito Vacio</h1>
@@ -30,11 +21,11 @@ const Cart = () => {
         {items.map((item) => (
         <li key={item.id}>
           <img src={item.imagen} className="img" ></img> - Producto: {item.name} - Cantidad: {item.cantidad} - Precio: $ {item.price} - Total: {item.cantidad * item.price}    
-          <button onClick={(event) => handleClickOnRemove(item.id)}> Eliminar Producto</button>
+          <button onClick={(event) => removeCartItem(item.id)}> Eliminar Producto</button>
         </li>))}
-        Compra Total: {items.reduce((acum, item) => acum + (item.cantidad * item.price),0)}
+          <h4>Compra Total: ${items.reduce((acum, item) => acum + (item.cantidad * item.price),0)}</h4> 
         
-        <button onClick={(event) => handleClickClear()}> Limpiar Carrito</button>
+        <button onClick={(event) => clearCart()}> Limpiar Carrito</button>
       </ul>
       <Checkout/>
     </div>
